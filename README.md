@@ -14,7 +14,7 @@ This platform implements a 5-step workflow to analyze drug efficacy and pharmaco
 
 ## Agent Architecture
 
-The system uses 5 specialized AI agents coordinated by an orchestrator:
+The system uses 6 specialized AI agents coordinated by an orchestrator:
 
 - **Orchestrator**: Coordinates workflow across all agents
 - **Literature Miner**: Searches PubMed for efficacy studies and GWAS data
