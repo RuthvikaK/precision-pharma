@@ -252,8 +252,32 @@ export default function App() {
             {result.hypotheses && result.hypotheses.length > 0 ? (
               <div className="hypotheses">
                 {result.hypotheses.map((h, idx) => (
-                <div key={idx} className="hypothesis-card">
-                  <h3>{idx + 1}. {h.hypothesis}</h3>
+                <div 
+                  key={idx} 
+                  className="hypothesis-card"
+                  style={h.alternative_drug ? {
+                    borderLeft: '5px solid #ff6b6b',
+                    backgroundColor: '#fff5f5'
+                  } : {}}
+                >
+                  <h3 style={h.alternative_drug ? { color: '#ff6b6b' } : {}}>
+                    {h.alternative_drug && '🔄 '}
+                    {idx + 1}. {h.hypothesis}
+                    {h.alternative_drug && ' ⭐'}
+                  </h3>
+                  {h.alternative_drug && (
+                    <div style={{
+                      backgroundColor: '#ff6b6b',
+                      color: 'white',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '4px',
+                      marginBottom: '1rem',
+                      fontSize: '0.9rem',
+                      fontWeight: 'bold'
+                    }}>
+                      🔄 ALTERNATIVE DRUG RECOMMENDATION - May work better for poor metabolizers
+                    </div>
+                  )}
                   <div className="hypothesis-content">
                     <div><strong>Rationale:</strong> {h.rationale}</div>
                     <div><strong>Implementation:</strong> {h.implementation}</div>
@@ -262,6 +286,17 @@ export default function App() {
                     {h.evidence_level && <div><strong>Evidence Level:</strong> {h.evidence_level}</div>}
                     {h.safety_note && <div className="safety-note"><strong>⚠️ Safety Note:</strong> {h.safety_note}</div>}
                     {h.development_status && <div><strong>Development Status:</strong> {h.development_status}</div>}
+                    {h.citation && (
+                      <div style={{ 
+                        marginTop: '0.75rem', 
+                        padding: '0.5rem', 
+                        backgroundColor: '#f8f9fa', 
+                        borderRadius: '4px',
+                        fontSize: '0.9rem'
+                      }}>
+                        <strong>📖 Evidence:</strong> {h.citation}
+                      </div>
+                    )}
                   </div>
                 </div>
                 ))}
